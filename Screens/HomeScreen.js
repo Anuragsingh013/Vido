@@ -17,6 +17,8 @@ import {useNavigation} from '@react-navigation/native';
 const HomeScreen = () => {
   const [randomId, setRandomId] = useState('');
   const [userName, setUserName] = useState('');
+  const [isFocused, setIsFocused] = useState(false);
+  const [isFocused2, setIsFocused2] = useState(false);
 
   const navigation = useNavigation();
 
@@ -46,38 +48,66 @@ const HomeScreen = () => {
         <View style={{width: '90%'}}>
           <TextInput
             placeholder="Enter Meeting Id"
-            style={styles.input}
+            style={[
+              styles.input,
+              // {borderColor: isFocused ? '#2c2c2c' : '#E2E4E8'},
+            ]}
             value={randomId}
             onChangeText={text => setRandomId(text)}
+            onFocus={() => setIsFocused(true)}
+            onBlur={() => setIsFocused(false)}
           />
           <TextInput
             placeholder="Enter User Name"
-            style={styles.input}
+            style={[
+              styles.input,
+              // {borderColor: isFocused2 ? '#2c2c2c' : '#E2E4E8'},
+            ]}
             value={userName}
             onChangeText={text => setUserName(text)}
+            onFocus={() => setIsFocused2(true)}
+            onBlur={() => setIsFocused2(false)}
           />
-          <Button
+          {/* <Button
             title="Join Meeting"
             onPress={() => {
               if (randomId.length > 5) {
                 navigation.navigate('callingScreen', {
                   callId: randomId,
                   userName: userName,
-                  setRandomId:setRandomId,
-                  setUserName:setUserName
+                  setRandomId: setRandomId,
+                  setUserName: setUserName,
                 });
               } else {
                 alert('Enter Valid Id');
               }
             }}
-          />
+          /> */}
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => {
+              if (randomId.length > 5) {
+                navigation.navigate('callingScreen', {
+                  callId: randomId,
+                  userName: userName,
+                  setRandomId: setRandomId,
+                  setUserName: setUserName,
+                });
+              } else {
+                alert('Enter Valid Id');
+              }
+            }}>
+            <Text style={styles.buttonText}>Join Meeting</Text>
+          </TouchableOpacity>
           <TouchableOpacity
             style={{marginVertical: 24, alignItems: 'center'}}
             onPress={() => {
               const id = generateRandomId();
               setRandomId(id);
             }}>
-            <Text style={{color: '#4456DC'}}>Generate Meeting Id 🤝</Text>
+            <Text style={{color: '#4456DC', fontFamily: 'OpenSans-Regular'}}>
+              Generate Meeting Id 🤝
+            </Text>
           </TouchableOpacity>
         </View>
       </ScrollView>
@@ -93,16 +123,30 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
   },
   input: {
-    borderWidth: 1,
+    borderWidth: 1.5,
     paddingHorizontal: 16,
-    borderColor: '#2c2c2c',
+    borderColor: '#E2E4E8',
     marginBottom: 20,
     borderRadius: 6,
   },
   heading: {
-    fontSize: 24,
+    fontSize: 22,
     color: '#2c2c2c',
     marginBottom: 20,
+    fontFamily: 'OpenSans-SemiBold',
+  },
+  button: {
+    backgroundColor: '#2196F3',
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 5,
+    alignItems: 'center',
+    marginTop: 20,
+  },
+  buttonText: {
+    color: '#fff',
+    fontSize: 15,
+   fontFamily:"OpenSans-Medium"
   },
 });
 

@@ -117,3 +117,7 @@ dependencies {
         implementation jscFlavor
     }
 }
+project.ext.react = [
+    enableHermes: false, // clean and rebuild if changing
+    assetsPath: "src/main/assets" // include assets path
+]

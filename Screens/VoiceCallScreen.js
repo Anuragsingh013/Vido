@@ -1,9 +1,5 @@
 import React from 'react';
-import {View, StyleSheet, Alert} from 'react-native';
-// import {
-//   ZegoUIKitPrebuiltCall,
-//   ONE_ON_ONE_VIDEO_CALL_CONFIG,
-// } from '@zegocloud/zego-uikit-prebuilt-call-rn';
+import {View, StyleSheet, Alert,Text} from 'react-native';
 import {ZegoUIKitPrebuiltCall, ONE_ON_ONE_VIDEO_CALL_CONFIG } from '@zegocloud/zego-uikit-prebuilt-call-rn'
 import {useNavigation, useRoute} from '@react-navigation/native';
 export default function VoiceCallScreen(props) {

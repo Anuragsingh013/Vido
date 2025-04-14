@@ -1,21 +1,27 @@
 import React from 'react';
-import {View, StyleSheet, Alert,Text} from 'react-native';
-import {ZegoUIKitPrebuiltCall, ONE_ON_ONE_VIDEO_CALL_CONFIG } from '@zegocloud/zego-uikit-prebuilt-call-rn'
-import {useNavigation, useRoute} from '@react-navigation/native';
+import { View, StyleSheet, Alert, Text } from 'react-native';
+import { ZegoUIKitPrebuiltCall, ONE_ON_ONE_VIDEO_CALL_CONFIG } from '@zegocloud/zego-uikit-prebuilt-call-rn'
+import { useNavigation, useRoute } from '@react-navigation/native';
+import { PrivateVariable } from './privateVariable';
 export default function VoiceCallScreen(props) {
   const userId = String(Math.floor(Math.random() * 100000));
 
   const navigation = useNavigation();
   const route = useRoute();
-  const {callId, userName, setUserName, setRandomId} = route.params;
+  const { callId, userName, setUserName, setRandomId } = route.params;
   console.log(route);
 
   return (
     <View style={styles.container}>
       <ZegoUIKitPrebuiltCall
-        appID={379220688}
+        // appID={379220688}
+        // appSign={
+        //   '3a870dac7e9ac4900be925ba2688a13a0dc2b2f2bea40588f06447008a9402e7'
+        // }
+
+        appID={PrivateVariable.appID}
         appSign={
-          '3a870dac7e9ac4900be925ba2688a13a0dc2b2f2bea40588f06447008a9402e7'
+          PrivateVariable.appSign
         }
         // userID={"121212"} // userID can be something like a phone number or the user id on your own user system.
         // userName={"khushi"}
